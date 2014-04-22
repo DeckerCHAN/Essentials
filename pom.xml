@@ -3,4 +3,26 @@
   <groupId>com.decker</groupId>
   <artifactId>Essentials</artifactId>
   <version>0.0.1-SNAPSHOT</version>
+  
+  
+  
+  
+  	<repositories>
+		<repository>
+			<id>tomcat</id>
+			<url>http://repo2.maven.org/maven2/org/apache/tomcat/</url>
+		</repository>
+	</repositories>
+
+	<dependencies>
+		<dependency>
+			<groupId>tomcat</groupId>
+			<artifactId>jasper-runtime</artifactId>
+			<version>5.5.23</version>
+		</dependency>
+	</dependencies>
+  
+  
+  
+  
 </project>
