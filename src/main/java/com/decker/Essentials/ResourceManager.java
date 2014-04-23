@@ -22,11 +22,17 @@ public class ResourceManager
 	return _Instance;
     }
 
-    public byte[] getResource(String resourceName) throws IOException
+    public byte[] getResource(String resourceName) 
     {
 	InputStream is = this.getClass().getResourceAsStream("/" + resourceName);
 
-	return sun.misc.IOUtils.readFully(is, -1, true);
+	try
+	{
+	    return sun.misc.IOUtils.readFully(is, -1, true);
+	} catch (IOException e)
+	{	    
+	    return new byte [0];
+	}
 
     }
 
