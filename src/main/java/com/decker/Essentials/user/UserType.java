@@ -2,7 +2,7 @@ package com.decker.Essentials.user;
 
 public enum UserType
 {
-    Anonym,
+    Anonymous,
     Student,
     Teacher,
     Master,
