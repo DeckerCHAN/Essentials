@@ -3,7 +3,7 @@ package com.decker.Essentials.OpenAPI;
 import java.awt.List;
 import java.util.LinkedList;
 
-import com.decker.Essentials.user.UserType;
+import com.decker.Essentials.UserControl.UserType;
 
 public class OutSideAPI
 {

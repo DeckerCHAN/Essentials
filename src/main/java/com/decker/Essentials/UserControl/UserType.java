@@ -1,4 +1,4 @@
-package com.decker.Essentials.user;
+package com.decker.Essentials.UserControl;
 
 public enum UserType
 {
