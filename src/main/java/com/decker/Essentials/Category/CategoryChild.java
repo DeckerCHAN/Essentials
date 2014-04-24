@@ -1,4 +1,4 @@
-package com.decker.Essentials.OpenAPI.Category;
+package com.decker.Essentials.Category;
 
 public class CategoryChild
 {
