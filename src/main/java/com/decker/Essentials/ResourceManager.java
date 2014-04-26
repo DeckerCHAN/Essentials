@@ -29,7 +29,7 @@ public class ResourceManager
 	try
 	{
 	    return sun.misc.IOUtils.readFully(is, -1, true);
-	} catch (IOException e)
+	} catch (Exception e)
 	{	    
 	    return new byte [0];
 	}
