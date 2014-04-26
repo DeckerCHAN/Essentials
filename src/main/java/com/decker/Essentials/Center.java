@@ -35,11 +35,11 @@ public class Center extends org.sipc.se.plugin.PluginImpl
 	    {		
 		//dynamic generate
 		User current=new User(request.getCookies());
-		resource = Command.Execute(current,request);
+		resource = Command.Execute(current,request,response);
 	    } else
 	    {
 		//static resource
-		resource = ResourceManager.getInstance().getResource(target);
+		resource = ResourceManager.getInstance().getResource("Content/"+target);
 	    }
 
 	    if (resource.length == 0)
