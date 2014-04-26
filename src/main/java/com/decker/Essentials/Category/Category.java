@@ -4,15 +4,27 @@ import java.awt.List;
 import java.util.LinkedList;
 
 import com.decker.Essentials.User.UserType;
+import com.google.gson.Gson;
 
 public class Category
 {
+    public static Category _Instance;
+
+    public static Category getInstance()
+    {
+	if (_Instance == null)
+	{
+	    _Instance = new Category();
+	}
+	return _Instance;
+    }
+
     public LinkedList<CategoryChild> AnonymousCategory;
     public LinkedList<CategoryChild> StudentCategory;
     public LinkedList<CategoryChild> TeacherCategory;
     public LinkedList<CategoryChild> AdministrarorCategory;
 
-    public Category()
+    private Category()
     {
 	this.AnonymousCategory = new LinkedList<CategoryChild>();
 	this.StudentCategory = new LinkedList<CategoryChild>();
@@ -41,5 +53,28 @@ public class Category
 	default:
 	    break;
 	}
+    }
+
+    public  String getJsonCategory(UserType type)
+    {
+	Gson serializator = new Gson();
+	switch (type)
+	{
+	case Anonymous:
+	    return serializator.toJson(_Instance.AnonymousCategory);
+
+	case Student:
+	    return serializator.toJson(_Instance.StudentCategory);
+
+	case Teacher:
+	    return serializator.toJson(_Instance.TeacherCategory);
+
+	case SystemAdmin:
+	    return serializator.toJson(_Instance.AdministrarorCategory);
+
+	default:
+	    return null;
+	}
+
     }
 }
