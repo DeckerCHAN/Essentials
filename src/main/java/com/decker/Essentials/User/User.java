@@ -12,9 +12,10 @@ public class User
     public User( Cookie[]  cookies)
     {
 	this.Cookies=cookies;
+	this.getUserType();
     }
     
-    private void chaseUserType()
+    private void getUserType()
     {
 	//if(seesen)
 	this.Type=UserType.Anonymous;
