@@ -35,6 +35,7 @@ public class Center extends org.sipc.se.plugin.PluginImpl
 	    {		
 		//dynamic generate
 		User current=new User(request.getCookies());
+		response.setContentType("application/json");
 		resource = Command.Execute(current,request,response);
 	    } else
 	    {
