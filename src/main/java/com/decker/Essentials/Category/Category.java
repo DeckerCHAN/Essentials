@@ -3,7 +3,7 @@ package com.decker.Essentials.Category;
 import java.awt.List;
 import java.util.LinkedList;
 
-import com.decker.Essentials.OpenAPI.User.UserType;
+import com.decker.Essentials.User.UserType;
 
 public class Category
 {
