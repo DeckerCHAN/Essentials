@@ -29,10 +29,10 @@ public class Center extends org.sipc.se.plugin.PluginImpl
 	try
 	{
 	    stream = response.getOutputStream();
-	    byte[] resource;
+	    byte[] resource=null;
 
 	    if (target.matches(".*.exec"))
-	    {
+	    {		
 		//dynamic generate
 		User current=new User(request.getCookies());
 		resource = Command.Execute(current,request);
