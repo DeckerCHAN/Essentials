@@ -1,4 +1,4 @@
-package com.decker.Essentials.OpenAPI.User;
+package com.decker.Essentials.User;
 
 public enum UserType
 {
