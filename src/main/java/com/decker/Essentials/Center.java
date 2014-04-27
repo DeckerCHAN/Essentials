@@ -2,6 +2,8 @@ package com.decker.Essentials;
 
 import java.io.IOException;
 import java.io.OutputStream;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -24,7 +26,10 @@ public class Center extends org.sipc.se.plugin.PluginImpl
     public void getResponse(HttpServletRequest request, HttpServletResponse response)
     {
 	String url = request.getRequestURI();
-	String target = url.substring(url.indexOf("Essentials") + "Essentials".length() + 1);
+	String target;
+	Matcher matcher=Pattern.compile("(?<=Essentials/).*").matcher(url);
+	target=matcher.find()?matcher.group(0):"Default.html";
+	target=target.replaceAll("\\?.*", null);
 	OutputStream stream;
 	try
 	{
