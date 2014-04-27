@@ -30,6 +30,12 @@ public class Category
 	this.StudentCategory = new LinkedList<CategoryChild>();
 	this.TeacherCategory = new LinkedList<CategoryChild>();
 	this.AdministrarorCategory = new LinkedList<CategoryChild>();
+	
+	this.AnonymousCategory.add(new CategoryChild("icon-home", "Homepage", "Template/Homepage.html"));
+	this.StudentCategory.add(new CategoryChild("icon-home", "Homepage", "Template/Homepage.html"));
+	this.TeacherCategory.add(new CategoryChild("icon-home", "Homepage", "Template/Homepage.html"));
+	this.AdministrarorCategory.add(new CategoryChild("icon-home", "Homepage", "Template/Homepage.html"));
+	
     }
 
     public void addFunctionToCategory(UserType category, String iconName, String title, String url)
