@@ -13,7 +13,10 @@ public class Command
 	switch (request.getRequestURI().substring(request.getRequestURI().lastIndexOf('/')))
 	{
 	case "/Sidebar.exec":return Category.getInstance().getJsonCategory(sender.Type).getBytes();
-	    
+	
+	case "/Login.exec":return "{\"status\":0,\"text\":\"hehe\"}".getBytes();
+	
+	case "/ReceiveUserData.exec":return "{\"username\":0,\"category\":\"hehe\"}".getBytes();
 	    	
 
 	default:
