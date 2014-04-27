@@ -28,7 +28,14 @@ public class Center extends org.sipc.se.plugin.PluginImpl
 	String url = request.getRequestURI();
 	String target;
 	Matcher matcher=Pattern.compile("(?<=Essentials/).*").matcher(url);
-	target=matcher.find()?matcher.group(0):"Default.html";
+	if(matcher.find())
+	{
+	    target=matcher.group(0);
+	}
+	else {
+	    target="Default.html";
+	}
+	System.out.print(target);
 	target=target.replaceAll("\\?.*", null);
 	OutputStream stream;
 	try
