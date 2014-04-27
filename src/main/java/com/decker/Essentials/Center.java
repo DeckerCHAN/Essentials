@@ -11,15 +11,15 @@ import javax.servlet.http.HttpServletResponse;
 import com.decker.Essentials.Category.Category;
 import com.decker.Essentials.User.User;
 
-
 public class Center extends org.sipc.se.plugin.PluginImpl
 {
 
     Category category;
+
     public Center()
     {
 	super();
-	this.category=Category.getInstance();
+	this.category = Category.getInstance();
     }
 
     @Override
@@ -27,37 +27,36 @@ public class Center extends org.sipc.se.plugin.PluginImpl
     {
 	String url = request.getRequestURI();
 	String target;
-	Matcher matcher=Pattern.compile("(?<=Essentials/).*").matcher(url);
-	if(matcher.find())
+	Matcher matcher = Pattern.compile("(?<=Essentials/).*").matcher(url);
+	if (matcher.find())
 	{
-	    target=matcher.group(0);
-	}
-	else {
-	    target="Default.html";
+	    target = matcher.group(0);
+	} else
+	{
+	    target = "Default.html";
 	}
 	System.out.print(target);
-	target=target.replaceAll("\\?.*", null);
+	target = target.replaceAll("\\?.*", null);
 	OutputStream stream;
 	try
 	{
 	    stream = response.getOutputStream();
-	    byte[] resource=null;
+	    byte[] resource = null;
 
 	    if (target.matches(".*.exec"))
-	    {		
-		//dynamic generate
-		User current=new User(request.getCookies());
+	    {
+		// dynamic generate
+		User current = new User(request.getCookies());
 		response.setContentType("application/json");
-		resource = Command.Execute(current,request,response);
+		resource = Command.Execute(current, request, response);
 	    } else
 	    {
-		//static resource
-		resource = ResourceManager.getInstance().getResource("Content/"+target);
-	    }
-
-	    if (resource.length == 0)
-	    {
-		response.setStatus(404);
+		// static resource
+		resource = ResourceManager.getInstance().getResource("Content/" + target);
+		if (resource.length == 0)
+		{
+		    response.setStatus(404);
+		}
 	    }
 
 	    stream.write(resource);
@@ -66,7 +65,7 @@ public class Center extends org.sipc.se.plugin.PluginImpl
 	{
 
 	}
-	
+
     }
 
     @Override

@@ -20,7 +20,7 @@ public class Command
 	    	
 
 	default:
-	    break;
+	    response.setStatus(404);
 	}
 	
 	return null;
