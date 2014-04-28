@@ -47,7 +47,7 @@ public class User
 	    ResultSet resultSet = OperateFactory.getInstance().getDAOInstance().doQuery(String.format("SELECT * FROM Essentials.User WHERE UserID = '%s' and Password = '%s' ", username, password));
 	    if (!resultSet.next())
 	    {
-		return new Cookie[] { new Cookie("UN", username), new Cookie("PW", password) };
+		return new Cookie[] { new Cookie("identification", username), new Cookie("varify", password) };
 	    }
 	} catch (Exception e)
 	{
