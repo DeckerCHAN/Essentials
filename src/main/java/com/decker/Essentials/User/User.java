@@ -9,17 +9,22 @@ import javax.servlet.http.HttpSession;
 
 public class User
 {
-    public UserType Type;
+    private UserType Type;
     private Cookie[] Cookies;
     public User( HttpServletRequest request,HttpServletResponse response)
     {
 	this.Cookies=request.getCookies();
-	this.getUserType();
+	this.setUserType();
     }
-    
-    private void getUserType()
+    private void setUserType()
     {
 	//if(seesen)
 	this.Type=UserType.Anonymous;
+    }	
+    
+    public UserType getUserType()
+    {
+	//if(seesen)
+	return this.Type;
     }	
 }
