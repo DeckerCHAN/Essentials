@@ -14,16 +14,14 @@ import org.sipc.se.dao.factory.OperateFactory;
 public class User
 {
     private UserType Type;
-    private Cookie[] Cookies;
 
     public User(HttpServletRequest request, HttpServletResponse response)
     {
-	this.Cookies = request.getCookies();
-	if (this.Cookies.length == 0)
+	if (request.getCookies().length == 0)
 	{
-
+	    this.setUserType(UserType.Anonymous);
 	}
-	this.setUserType(UserType.Anonymous);
+	
     }
 
     private void setUserType(UserType userType)
