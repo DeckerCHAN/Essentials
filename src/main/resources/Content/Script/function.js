@@ -30,7 +30,7 @@ document.login = function ()
         type: "POST",
         dataType :"json",
         data: {
-            name: $("#form-signin-username").val(),
+            username: $("#form-signin-username").val(),
             password: $("#form-signin-password").val()
         },
         success: function (data)
@@ -45,6 +45,7 @@ document.login = function ()
                     $("#form-signin-notice").text(data.text);
                     document.receiveUserData();
                     document.hideLogin();
+                    document.loadSidebar();
                     break;
                 case 1:
 
@@ -63,7 +64,7 @@ document.login = function ()
                     $("#form-signin-notice").text(data.text);
                     break;
             }
-            document.loadSidebar();
+
         }
 
     });
@@ -72,7 +73,6 @@ document.login = function ()
 document.logout = function()
 {
     $.removeCookie('identification');
-    $.removeCookie('varify');
     $("#signin-block").show();
     $("#signed-block").hide();
 };
