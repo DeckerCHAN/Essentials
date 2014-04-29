@@ -1,6 +1,7 @@
 ﻿//Event
 $(document).ready(function()
 {
+	document.receiveUserData();
     document.loadSidebar();
 });
 //Account
@@ -73,6 +74,9 @@ document.login = function ()
 document.logout = function()
 {
     $.removeCookie('identification');
+    $("#form-signin-username").val("");
+    $("#form-signin-password").val("");
+    $("#form-signin-notice").hide();
     $("#signin-block").show();
     $("#signed-block").hide();
 };
@@ -81,10 +85,20 @@ document.receiveUserData = function ()
 {
     $.ajax({
         url: "ReceiveUserData.exec",
+        cache: false,
         success: function (data)
         {
-            $("#signin-block").hide();
-            $("#signed-block").show();
+        	if(data)
+    		{
+	            $("#signin-block").hide();
+	            $("#signed-block").show();
+    		}
+        	else
+    		{
+        	    $("#signin-block").show();
+        	    $("#signed-block").hide();
+    		}
+
         }
 
     });
