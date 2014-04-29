@@ -2,7 +2,11 @@ package com.decker.Essentials.User;
 
 import java.net.HttpCookie;
 import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.security.Timestamp;
 import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.Date;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
@@ -13,46 +17,105 @@ import org.sipc.se.dao.factory.OperateFactory;
 
 public class User
 {
-    private UserType Type;
+    /* private UserType Type; */
+    private HttpServletRequest Requset;
+    private HttpServletResponse Response;
+    private ResultSet AboutUser;
+
+    /*
+     * private String UserName; private String Password; private String
+     * DisplayName; private Date LastLogin;
+     */
 
     public User(HttpServletRequest request, HttpServletResponse response)
     {
-	if (request.getCookies().length == 0)
+	this.Requset = request;
+	this.Response = response;
+	if ((request.getAttribute("username") != null) && (request.getAttribute("password") != null))
 	{
-	    this.setUserType(UserType.Anonymous);
+	    this.AboutUser = ReceiveDataFromUser((String) request.getAttribute("username"), ConvertMD5((String) request.getAttribute("password")));
 	}
-	
+
     }
 
-    private void setUserType(UserType userType)
+    public UserType GetUserType()
     {
-	// if(seesen)
-	this.Type = userType;
-    }
-
-    public UserType getUserType()
-    {
-	// if(seesen)
-	return this.Type;
-    }
-
-    public static Cookie[] GetLoginCookies(String username, String password)
-    {
-
 	try
 	{
-	    password = new String(MessageDigest.getInstance("MD5").digest(password.getBytes()));
-	    ResultSet resultSet = OperateFactory.getInstance().getDAOInstance().doQuery(String.format("SELECT * FROM Essentials.User WHERE UserID = '%s' and Password = '%s' ", username, password));
-	    if (!resultSet.next())
+	    if (this.AboutUser == null )
+		return UserType.Anonymous;
+	    switch (this.AboutUser.getInt("InRole"))
 	    {
-		return new Cookie[] { new Cookie("identification", username), new Cookie("varify", password) };
+	    case 0:
+		return UserType.SystemAdmin;
+	    case 1:
+		return UserType.Teacher;
+	    case 2:
+		return UserType.Student;
+	    case 3:
+		return UserType.Anonymous;
+	    default:
+		return UserType.Anonymous;
 	    }
 	} catch (Exception e)
 	{
-	    System.out.print(e.toString());
-
+	    // TODO Auto-generated catch block
+	    e.printStackTrace();
+	    return UserType.Anonymous;
 	}
 
-	return new Cookie[0];
     }
+
+    public Date GetLastLogin()
+    {
+	try
+	{
+	    if (this.AboutUser == null )
+	    return new Date();
+	    
+	    return this.AboutUser.getDate("LastLoginDate");
+	    
+	} catch (SQLException e)
+	{
+	    // TODO Auto-generated catch block
+	    e.printStackTrace();
+	    return new Date();
+	}
+    }
+    
+    public static ResultSet ReceiveDataFromUser(String username, String MD5password)
+    {
+	String sqlString = String.format("SELECT * FROM Essentials.User WHERE UserID = '%s' and Password = '%s' ", username, MD5password);
+	ResultSet resultSet;
+	try
+	{
+	    resultSet = OperateFactory.getInstance().getDAOInstance().doQuery(sqlString);
+	    if (!resultSet.first())
+	    {
+		return null;
+	    } else
+	    {
+		return resultSet;
+	    }
+	} catch (Exception e)
+	{
+	    // TODO Auto-generated catch block
+	    e.printStackTrace();
+	}
+	return null;
+    }
+
+    public static String ConvertMD5(String string)
+    {
+	try
+	{
+	    return new String(MessageDigest.getInstance("MD5").digest(string.getBytes()));
+	} catch (NoSuchAlgorithmException e)
+	{
+	    // TODO Auto-generated catch block
+	    e.printStackTrace();
+	    return null;
+	}
+    }
+
 }
