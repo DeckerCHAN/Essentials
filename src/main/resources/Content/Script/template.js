@@ -260,5 +260,12 @@ $(function ()
         });
         $(this).addClass("active");
     });
+    //prevent enter submit
+    $(window).keydown(function(event){
+        if(event.keyCode == 13) {
+          event.preventDefault();
+          return false;
+        }
+      });
 });
 
