@@ -25,18 +25,36 @@ public class User
     {
 	this.Requset = request;
 	this.Response = response;
-	if ((request.getAttribute("username") != null) && (request.getAttribute("password") != null))
+	if (request.getCookies().length != 0)
+	{
+	    for (Cookie cookie : request.getCookies())
+	    {
+		if (cookie.getName() == "identification")
+		{
+		    String[] arg = cookie.getValue().split("||");
+		    try
+		    {
+			this.AboutUser = ReceiveDataFromUser(arg[0], arg[1]);
+		    } catch (Exception e)
+		    {
+			this.AboutUser = null;
+		    }
+
+		}
+	    }
+	} else if ((request.getAttribute("username") != null) && (request.getAttribute("password") != null))
 	{
 	    this.AboutUser = ReceiveDataFromUser((String) request.getAttribute("username"), ConvertMD5((String) request.getAttribute("password")));
+
 	}
 
     }
 
-    public UserType GetUserType()
+    public UserType getUserType()
     {
 	try
 	{
-	    if (this.AboutUser == null )
+	    if (this.AboutUser == null)
 		return UserType.Anonymous;
 	    switch (this.AboutUser.getInt("InRole"))
 	    {
@@ -59,22 +77,22 @@ public class User
 
     }
 
-    public Date GetLastLogin()
+    public Date getLastLogin()
     {
 	try
 	{
-	    if (this.AboutUser == null )
-	    return new Date();
-	    
+	    if (this.AboutUser == null)
+		return new Date();
+
 	    return this.AboutUser.getDate("LastLoginDate");
-	    
+
 	} catch (SQLException e)
 	{
 	    e.printStackTrace();
 	    return new Date();
 	}
     }
-    
+
     public static ResultSet ReceiveDataFromUser(String username, String MD5password)
     {
 	String sqlString = String.format("SELECT * FROM Essentials.User WHERE UserID = '%s' and Password = '%s' ", username, MD5password);
