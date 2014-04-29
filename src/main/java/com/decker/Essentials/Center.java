@@ -35,7 +35,6 @@ public class Center extends org.sipc.se.plugin.PluginImpl
 	{
 	    target = "Default.html";
 	}
-	System.out.print(target);
 	target = target.replaceAll("\\?.*", null);
 	OutputStream stream;
 	try
@@ -71,7 +70,7 @@ public class Center extends org.sipc.se.plugin.PluginImpl
     @Override
     public String getUrl()
     {
-	return "Essentials";
+	return "~/Essentials";
     }
 
     @Override

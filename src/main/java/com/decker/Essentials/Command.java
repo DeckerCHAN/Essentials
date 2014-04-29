@@ -14,9 +14,9 @@ public class Command
 	{
 	case "/Sidebar.exec":return Category.getInstance().getJsonCategory(sender.getUserType()).getBytes();
 	
-	case "/Login.exec":return "{\"status\":0,\"text\":\"hehe\"}".getBytes();
+	case "/Login.exec":return sender.identifyUser().getBytes();
 	
-	case "/ReceiveUserData.exec":return "{\"username\":0,\"category\":\"hehe\"}".getBytes();
+	case "/ReceiveUserData.exec":return sender.getUserInformationsJson().getBytes();
 	    	
 
 	default:
