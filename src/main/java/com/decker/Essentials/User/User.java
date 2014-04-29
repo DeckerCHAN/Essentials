@@ -17,15 +17,9 @@ import org.sipc.se.dao.factory.OperateFactory;
 
 public class User
 {
-    /* private UserType Type; */
     private HttpServletRequest Requset;
     private HttpServletResponse Response;
     private ResultSet AboutUser;
-
-    /*
-     * private String UserName; private String Password; private String
-     * DisplayName; private Date LastLogin;
-     */
 
     public User(HttpServletRequest request, HttpServletResponse response)
     {
@@ -59,7 +53,6 @@ public class User
 	    }
 	} catch (Exception e)
 	{
-	    // TODO Auto-generated catch block
 	    e.printStackTrace();
 	    return UserType.Anonymous;
 	}
@@ -77,7 +70,6 @@ public class User
 	    
 	} catch (SQLException e)
 	{
-	    // TODO Auto-generated catch block
 	    e.printStackTrace();
 	    return new Date();
 	}
@@ -99,7 +91,6 @@ public class User
 	    }
 	} catch (Exception e)
 	{
-	    // TODO Auto-generated catch block
 	    e.printStackTrace();
 	}
 	return null;
@@ -112,7 +103,6 @@ public class User
 	    return new String(MessageDigest.getInstance("MD5").digest(string.getBytes()));
 	} catch (NoSuchAlgorithmException e)
 	{
-	    // TODO Auto-generated catch block
 	    e.printStackTrace();
 	    return null;
 	}
