@@ -62,7 +62,9 @@ public class Center extends org.sipc.se.plugin.PluginImpl
 
 	} catch (IOException e)
 	{
-
+	    e.printStackTrace();
+	    response.setStatus(500);
+	    return;
 	}
 
     }
