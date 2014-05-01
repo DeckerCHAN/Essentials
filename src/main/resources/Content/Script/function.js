@@ -109,6 +109,7 @@ document.loadContent = function (url)
 {
     $.ajax({
         url: url,
+        dataType: "html",
         success: function (data)
         {
             $("#content").html(data);
