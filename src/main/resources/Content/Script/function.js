@@ -79,6 +79,7 @@ document.logout = function()
     $("#form-signin-notice").hide();
     $("#signin-block").show();
     $("#signed-block").hide();
+    document.loadSidebar();
 };
 
 document.receiveUserData = function ()
