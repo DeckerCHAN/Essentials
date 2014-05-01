@@ -11,12 +11,12 @@ import javax.servlet.http.HttpServletResponse;
 import com.decker.Essentials.Category.Category;
 import com.decker.Essentials.User.User;
 
-public class Center extends org.sipc.se.plugin.PluginImpl
+public class EssentialsPlugin extends org.sipc.se.plugin.PluginImpl
 {
 
-    Category category;
+    public Category category;
 
-    public Center()
+    public EssentialsPlugin()
     {
 	super();
 	this.category = Category.getInstance();
@@ -78,7 +78,6 @@ public class Center extends org.sipc.se.plugin.PluginImpl
     @Override
     public boolean onEnable()
     {
-	// TODO Auto-generated method stub
 	return true;
     }
 }
