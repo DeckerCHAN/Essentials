@@ -6,7 +6,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.decker.Essentials.Category.Category;
 import com.decker.Essentials.User.User;
 
-public class Command
+ class Command
 {
     public static byte [] Execute(User sender,HttpServletRequest request,HttpServletResponse response)
     {
