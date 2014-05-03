@@ -51,7 +51,7 @@ public class EssentialsPlugin extends org.sipc.se.plugin.PluginImpl
 	    } else
 	    {
 		// static resource
-		resource = ResourceManager.getInstance().getResource("Content/" + target);
+		resource = ResourceManager.getInstance().getResource( target);
 		if (resource.length == 0)
 		{
 		    response.setStatus(404);

@@ -24,7 +24,7 @@ public class ResourceManager
 
     public byte[] getResource(String resourceName) 
     {
-	InputStream is = this.getClass().getResourceAsStream("/" + resourceName);
+	InputStream is = this.getClass().getResourceAsStream("/Essentials/" +resourceName);
 
 	try
 	{
