@@ -112,8 +112,10 @@ document.loadContent = function (url)
         dataType: "html",
         success: function (data)
         {
-            $("#content").html(data);
-          //  document.contentInit();
+            $("#content").fadeOut(function(){
+            	 $("#content").html(data);
+            });           
+            $("#content").fadeIn();
         }
 
     });
