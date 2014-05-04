@@ -112,10 +112,8 @@ document.loadContent = function (url)
         dataType: "html",
         success: function (data)
         {
-            $("#content").fadeOut(function(){
-            	 $("#content").html(data);
-            });           
-            $("#content").fadeIn();
+            $("#content").html(data);
+          //  document.contentInit();
         }
 
     });
