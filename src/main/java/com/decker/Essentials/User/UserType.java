@@ -5,6 +5,5 @@ public enum UserType
     Anonymous,
     Student,
     Teacher,
-    Master,
     SystemAdmin
 }
