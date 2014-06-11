@@ -8,7 +8,7 @@ import com.google.gson.Gson;
 
 public class Category
 {
-    public static Category _Instance;
+    private static Category _Instance;
 
     public static Category getInstance()
     {
@@ -24,7 +24,7 @@ public class Category
     public LinkedList<CategoryChild> TeacherCategory;
     public LinkedList<CategoryChild> AdministrarorCategory;
 
-    private Category()
+    public Category()
     {
 	this.AnonymousCategory = new LinkedList<CategoryChild>();
 	this.StudentCategory = new LinkedList<CategoryChild>();
